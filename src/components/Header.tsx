@@ -8,6 +8,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
+    { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { name: "Features", href: "/features" },
     { name: "About", href: "/about" },
@@ -23,7 +24,7 @@ const Header = () => {
             <img 
               src={logo} 
               alt="SlogFY Logo" 
-              className="h-12 w-auto object-contain"
+              className="h-16 w-auto object-contain brightness-0 invert"
             />
           </Link>
 
