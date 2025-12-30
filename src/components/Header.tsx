@@ -24,7 +24,7 @@ const Header = () => {
             <img 
               src={logo} 
               alt="SlogFY Logo" 
-              className="h-16 w-auto object-contain brightness-0 invert"
+              className="h-16 w-auto object-contain"
             />
           </Link>
 
