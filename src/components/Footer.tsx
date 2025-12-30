@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
 import logo from "@/assets/slogfy-logo.png";
 
 const footerLinks = {
@@ -23,10 +23,11 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Instagram, href: "https://www.instagram.com/slogfy/", label: "Instagram" },
+  { icon: Twitter, href: "https://x.com/slogfy", label: "X (Twitter)" },
+  { icon: Facebook, href: "https://www.facebook.com/slogfy/", label: "Facebook" },
+  { icon: Linkedin, href: "https://in.linkedin.com/company/slogify", label: "LinkedIn" },
+  { icon: Youtube, href: "https://www.youtube.com/@slogFY", label: "YouTube" },
 ];
 
 const Footer = () => {
