@@ -1,35 +1,35 @@
-import { Check, Smartphone, Zap, Clock, Shield } from "lucide-react";
+import { Check, Cloud, Activity, Home, Monitor, Building, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const features = [
-  "Centralized control from any device",
-  "Energy monitoring & optimization",
-  "Automated routines & scenes",
-  "Real-time alerts & notifications",
-  "Voice command integration",
-  "Remote access from anywhere",
+  "Secure cloud-based architecture",
+  "Real-time device control & monitoring",
+  "Matter-ready smart home ecosystem",
+  "Mobile & web dashboard support",
+  "Scalable for homes, offices, and institutions",
+  "Built with reliability, privacy, and performance in mind",
 ];
 
 const highlights = [
   {
-    icon: Smartphone,
-    title: "One App Control",
-    description: "Manage every device from a single, intuitive application",
+    icon: Cloud,
+    title: "Cloud Architecture",
+    description: "Secure, scalable cloud infrastructure for all your devices",
   },
   {
-    icon: Zap,
-    title: "Energy Efficient",
-    description: "Reduce energy costs by up to 30% with smart automation",
+    icon: Activity,
+    title: "Real-time Control",
+    description: "Instant device monitoring and control from anywhere",
   },
   {
-    icon: Clock,
-    title: "24/7 Monitoring",
-    description: "Continuous monitoring and instant alerts for peace of mind",
+    icon: Home,
+    title: "Matter-Ready",
+    description: "Future-proof ecosystem with Matter protocol support",
   },
   {
-    icon: Shield,
-    title: "Secure & Private",
-    description: "Enterprise-grade encryption protecting your data",
+    icon: Lock,
+    title: "Privacy First",
+    description: "Built with security, reliability, and privacy in mind",
   },
 ];
 
@@ -47,11 +47,11 @@ const Features = () => {
               Why Choose Us
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              Experience the Future of{" "}
-              <span className="text-gradient">Smart Living</span>
+              Why Choose{" "}
+              <span className="text-gradient">SlogFY</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              slogFy brings cutting-edge technology to your doorstep with solutions designed for modern life. We don't just automate your home – we transform how you live.
+              We deliver cutting-edge smart home solutions with a focus on security, scalability, and seamless user experience. Our technology is designed to grow with your needs.
             </p>
             
             {/* Feature List */}

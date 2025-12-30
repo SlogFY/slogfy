@@ -21,19 +21,20 @@ const Contact = () => {
                   Get In Touch
                 </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                  Ready to <span className="text-gradient">Transform</span> Your Home?
+                  Let's Build Something{" "}
+                  <span className="text-gradient">Smart</span>
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Schedule a free consultation with our experts and discover how slogFy can revolutionize your living space.
+                  Have a project in mind or want to automate your space? Get in touch with us.
                 </p>
               </div>
               
               {/* Contact Info */}
               <div className="grid sm:grid-cols-3 gap-6 mb-10">
                 {[
-                  { icon: Mail, label: "Email Us", value: "hello@slogfy.com" },
-                  { icon: Phone, label: "Call Us", value: "+1 (555) 123-4567" },
-                  { icon: MapPin, label: "Visit Us", value: "San Francisco, CA" },
+                  { icon: Mail, label: "Email Us", value: "info@slogfy.in" },
+                  { icon: Phone, label: "Call Us", value: "+91 8005183363" },
+                  { icon: MapPin, label: "Location", value: "Uttar Pradesh, India" },
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-4 p-4 rounded-xl bg-muted/30 border border-border/30">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -50,7 +51,7 @@ const Contact = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="hero" size="xl">
-                  Schedule Consultation
+                  Send Us a Message
                   <ArrowRight className="w-5 h-5" />
                 </Button>
                 <Button variant="heroOutline" size="xl">
