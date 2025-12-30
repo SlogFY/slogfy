@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import heroImage from "@/assets/hero-smart-home.jpg";
 
 const Hero = () => {
@@ -23,29 +23,29 @@ const Hero = () => {
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 animate-fade-up-delay-1">
-              Transform Your Home Into a{" "}
-              <span className="text-gradient">Smart Sanctuary</span>
+              Smart Home Automation,{" "}
+              <span className="text-gradient">Designed for Real Life</span>
             </h1>
             
             <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-up-delay-2">
-              Experience seamless automation that adapts to your lifestyle. Control lighting, security, climate, and entertainment with a single touch.
+              SlogFY builds secure, intelligent, and scalable home automation solutions with built-in safety and seamless control.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-up-delay-3">
               <Button variant="hero" size="xl">
-                Start Your Journey
+                Get Started
                 <ArrowRight className="w-5 h-5" />
               </Button>
               <Button variant="heroOutline" size="xl">
-                <Play className="w-5 h-5" />
-                Watch Demo
+                <MessageCircle className="w-5 h-5" />
+                Talk to Us
               </Button>
             </div>
             
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-border/50">
               {[
-                { value: "10K+", label: "Homes Automated" },
+                { value: "100+", label: "Projects Completed" },
                 { value: "99%", label: "Client Satisfaction" },
                 { value: "24/7", label: "Support Available" },
               ].map((stat, index) => (
@@ -74,7 +74,7 @@ const Hero = () => {
                 <div className="absolute bottom-4 left-4 right-4 bg-card/90 backdrop-blur-lg rounded-xl p-4 border border-border/50">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Living Room</p>
+                      <p className="text-sm text-muted-foreground">Smart Home</p>
                       <p className="text-lg font-semibold text-foreground">All Systems Active</p>
                     </div>
                     <div className="flex gap-2">

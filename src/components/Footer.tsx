@@ -1,17 +1,18 @@
-import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import logo from "@/assets/slogfy-logo.png";
 
 const footerLinks = {
   company: [
     { name: "About Us", href: "#about" },
-    { name: "Careers", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Blog", href: "#" },
+    { name: "Services", href: "#services" },
+    { name: "Features", href: "#features" },
+    { name: "Contact", href: "#contact" },
   ],
   services: [
-    { name: "Smart Lighting", href: "#" },
-    { name: "Security Systems", href: "#" },
-    { name: "Climate Control", href: "#" },
-    { name: "Entertainment", href: "#" },
+    { name: "Smart Home Automation", href: "#services" },
+    { name: "IoT Development", href: "#services" },
+    { name: "Security Systems", href: "#services" },
+    { name: "Robotics & AI", href: "#services" },
   ],
   support: [
     { name: "Help Center", href: "#" },
@@ -26,7 +27,6 @@ const socialLinks = [
   { icon: Twitter, href: "#", label: "Twitter" },
   { icon: Instagram, href: "#", label: "Instagram" },
   { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Youtube, href: "#", label: "YouTube" },
 ];
 
 const Footer = () => {
@@ -37,15 +37,14 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">S</span>
-              </div>
-              <span className="text-xl font-bold text-foreground">
-                slog<span className="text-primary">Fy</span>
-              </span>
+              <img 
+                src={logo} 
+                alt="SlogFY Logo" 
+                className="h-12 w-auto object-contain"
+              />
             </a>
             <p className="text-muted-foreground mb-6 max-w-sm">
-              Transforming homes into intelligent living spaces. Experience the future of automation with slogFy.
+              SlogFY is a technology-driven company focused on smart home automation, IoT devices, and intelligent safety solutions.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -114,7 +113,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-border/50 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} slogFy. All rights reserved.
+            © {new Date().getFullYear()} SlogFY. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">

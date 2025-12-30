@@ -1,41 +1,35 @@
-import { Lightbulb, Shield, Thermometer, Tv, Wifi, Mic } from "lucide-react";
+import { Home, Cpu, ShieldAlert, LayoutDashboard, Bot } from "lucide-react";
 
 const services = [
   {
-    icon: Lightbulb,
-    title: "Smart Lighting",
-    description: "Automated lighting that adjusts to your mood, time of day, and activities. Save energy while creating the perfect ambiance.",
-    color: "from-yellow-500 to-orange-500",
-  },
-  {
-    icon: Shield,
-    title: "Security Systems",
-    description: "Advanced security with smart locks, cameras, and sensors. Monitor your home from anywhere, anytime.",
+    icon: Home,
+    title: "Smart Home Automation",
+    description: "End-to-end home automation solutions including lighting, appliances, security, and energy control using modern IoT standards.",
     color: "from-primary to-blue-600",
   },
   {
-    icon: Thermometer,
-    title: "Climate Control",
-    description: "Intelligent HVAC management that learns your preferences and optimizes energy consumption automatically.",
-    color: "from-green-500 to-emerald-600",
-  },
-  {
-    icon: Tv,
-    title: "Entertainment",
-    description: "Seamless integration of audio, video, and streaming services throughout your home with voice control.",
+    icon: Cpu,
+    title: "Custom IoT Device Development",
+    description: "Design and development of custom IoT hardware and firmware based on ESP32, Matter, BLE, Wi-Fi, and cloud integration.",
     color: "from-purple-500 to-pink-600",
   },
   {
-    icon: Wifi,
-    title: "Network Solutions",
-    description: "Robust, whole-home networking ensuring fast, reliable connectivity for all your smart devices.",
-    color: "from-cyan-500 to-primary",
+    icon: ShieldAlert,
+    title: "Security & SOS Systems",
+    description: "Smart security devices with instant SOS alerts, real-time notifications, and remote monitoring.",
+    color: "from-secondary to-red-500",
   },
   {
-    icon: Mic,
-    title: "Voice Integration",
-    description: "Compatible with Alexa, Google Home, and Siri. Control everything with simple voice commands.",
-    color: "from-secondary to-red-500",
+    icon: LayoutDashboard,
+    title: "Dashboard & Mobile App Development",
+    description: "User and admin dashboards with real-time device control, analytics, and secure cloud connectivity.",
+    color: "from-green-500 to-emerald-600",
+  },
+  {
+    icon: Bot,
+    title: "Robotics & AI Solutions",
+    description: "Custom robotics and AI-based automation projects tailored to specific client requirements.",
+    color: "from-cyan-500 to-primary",
   },
 ];
 
@@ -52,11 +46,11 @@ const Services = () => {
             Our Services
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Complete Home{" "}
-            <span className="text-gradient">Automation Solutions</span>
+            What We{" "}
+            <span className="text-gradient">Offer</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            From lighting to security, we provide comprehensive smart home solutions tailored to your unique needs.
+            From smart home automation to custom IoT development, we provide comprehensive solutions tailored to your unique needs.
           </p>
         </div>
         

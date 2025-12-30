@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/slogfy-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,12 +19,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg group-hover:shadow-[0_0_20px_hsl(199_89%_48%/0.5)] transition-shadow duration-300">
-              <span className="text-primary-foreground font-bold text-lg">S</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">
-              slog<span className="text-primary">Fy</span>
-            </span>
+            <img 
+              src={logo} 
+              alt="SlogFY Logo" 
+              className="h-12 w-auto object-contain"
+            />
           </a>
 
           {/* Desktop Navigation */}
