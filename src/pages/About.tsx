@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TeamSection from "@/components/TeamSection";
 import { Target, Eye, Cpu } from "lucide-react";
 import logo from "@/assets/slogfy-logo.png";
 
@@ -87,6 +88,9 @@ const AboutPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Team Section */}
+        <TeamSection />
       </main>
       <Footer />
     </div>
