@@ -1,24 +1,25 @@
 import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/slogfy-logo.png";
 
 const footerLinks = {
   company: [
-    { name: "About Us", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Features", href: "#features" },
-    { name: "Contact", href: "#contact" },
+    { name: "About Us", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Features", href: "/features" },
+    { name: "Contact", href: "/contact" },
   ],
   services: [
-    { name: "Smart Home Automation", href: "#services" },
-    { name: "IoT Development", href: "#services" },
-    { name: "Security Systems", href: "#services" },
-    { name: "Robotics & AI", href: "#services" },
+    { name: "Smart Home Automation", href: "/services" },
+    { name: "IoT Development", href: "/services" },
+    { name: "Security Systems", href: "/services" },
+    { name: "Robotics & AI", href: "/services" },
   ],
   support: [
-    { name: "Help Center", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Contact Us", href: "#contact" },
-    { name: "FAQs", href: "#" },
+    { name: "Help Center", href: "/contact" },
+    { name: "Documentation", href: "/contact" },
+    { name: "Contact Us", href: "/contact" },
+    { name: "FAQs", href: "/contact" },
   ],
 };
 
@@ -37,13 +38,13 @@ const Footer = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-4">
+            <Link to="/" className="flex items-center gap-2 mb-4">
               <img 
                 src={logo} 
                 alt="SlogFY Logo" 
                 className="h-12 w-auto object-contain"
               />
-            </a>
+            </Link>
             <p className="text-muted-foreground mb-6 max-w-sm">
               SlogFY is a technology-driven company focused on smart home automation, IoT devices, and intelligent safety solutions.
             </p>
@@ -69,12 +70,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-muted-foreground hover:text-foreground transition-colors duration-300"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -85,12 +86,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-muted-foreground hover:text-foreground transition-colors duration-300"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -101,12 +102,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-muted-foreground hover:text-foreground transition-colors duration-300"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

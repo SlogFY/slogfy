@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/slogfy-logo.png";
@@ -7,10 +8,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
-    { name: "Features", href: "#features" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Services", href: "/services" },
+    { name: "Features", href: "/features" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -18,32 +19,34 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group">
             <img 
               src={logo} 
               alt="SlogFY Logo" 
               className="h-12 w-auto object-contain"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button variant="hero" size="default">
-              Get Started
-            </Button>
+            <Link to="/get-started">
+              <Button variant="hero" size="default">
+                Get Started
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -60,18 +63,20 @@ const Header = () => {
           <div className="md:hidden py-4 border-t border-border/50">
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
-              <Button variant="hero" size="default" className="mt-2">
-                Get Started
-              </Button>
+              <Link to="/get-started" onClick={() => setIsMenuOpen(false)}>
+                <Button variant="hero" size="default" className="mt-2 w-full">
+                  Get Started
+                </Button>
+              </Link>
             </nav>
           </div>
         )}
