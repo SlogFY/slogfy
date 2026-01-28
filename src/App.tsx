@@ -11,6 +11,7 @@ import ContactPage from "./pages/Contact";
 import GetStartedPage from "./pages/GetStarted";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import Careers from "./pages/Careers";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/get-started" element={<GetStartedPage />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/careers" element={<Careers />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

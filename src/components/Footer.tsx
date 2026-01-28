@@ -8,6 +8,7 @@ const footerLinks = {
     { name: "Services", href: "/services" },
     { name: "Features", href: "/features" },
     { name: "Contact", href: "/contact" },
+    { name: "Careers", href: "/careers" },
   ],
   services: [
     { name: "Smart Home Automation", href: "/services" },
