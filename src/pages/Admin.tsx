@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Trash2, LogOut, Users, Edit2, Save, X } from "lucide-react";
+import { Plus, Trash2, LogOut, Users, Edit2, Save, X, GraduationCap } from "lucide-react";
+import CareerApplications from "@/components/admin/CareerApplications";
 import { User } from "@supabase/supabase-js";
 
 interface TeamMember {
@@ -377,6 +378,11 @@ const Admin = () => {
                 ))}
               </div>
             )}
+          </div>
+
+          {/* Career Applications */}
+          <div className="mt-8">
+            <CareerApplications />
           </div>
         </div>
       </main>
