@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { 
@@ -14,6 +14,11 @@ import {
   Users, 
   TrendingUp 
 } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const offers = [
   {
@@ -118,12 +123,43 @@ const idealFor = [
 const SmartHomeAutomation = () => {
   const [isDayMode, setIsDayMode] = useState(false);
   const [isSpotlightMode, setIsSpotlightMode] = useState(false);
+  const [isGridMode, setIsGridMode] = useState(false);
+  const [isVoiceMode, setIsVoiceMode] = useState(false);
+  const [isExpandMode, setIsExpandMode] = useState(false);
+  const [isShieldMode, setIsShieldMode] = useState(false);
+  const [voiceBars, setVoiceBars] = useState<number[]>([]);
+
+  // Voice wave animation
+  useEffect(() => {
+    if (isVoiceMode) {
+      const interval = setInterval(() => {
+        setVoiceBars(Array.from({ length: 12 }, () => Math.random() * 100));
+      }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [isVoiceMode]);
+
+  // Auto-close shield scan after 3 seconds
+  useEffect(() => {
+    if (isShieldMode) {
+      const timer = setTimeout(() => setIsShieldMode(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isShieldMode]);
 
   const handleIconClick = (offerId: string) => {
     if (offerId === "lighting") {
       setIsDayMode(!isDayMode);
     } else if (offerId === "appliance") {
       setIsSpotlightMode(!isSpotlightMode);
+    } else if (offerId === "centralized") {
+      setIsGridMode(!isGridMode);
+    } else if (offerId === "voice") {
+      setIsVoiceMode(!isVoiceMode);
+    } else if (offerId === "scalable") {
+      setIsExpandMode(!isExpandMode);
+    } else if (offerId === "security") {
+      setIsShieldMode(true);
     }
   };
 
@@ -144,8 +180,103 @@ const SmartHomeAutomation = () => {
     );
   }
 
+  // Voice Assistant mode - full screen voice wave
+  if (isVoiceMode) {
+    return (
+      <div 
+        className="min-h-screen bg-black flex flex-col items-center justify-center cursor-pointer gap-8"
+        onClick={() => setIsVoiceMode(false)}
+      >
+        <div className="flex items-end gap-1 h-32">
+          {voiceBars.map((height, i) => (
+            <div
+              key={i}
+              className="w-3 bg-gradient-to-t from-purple-500 to-pink-500 rounded-full transition-all duration-100"
+              style={{ height: `${Math.max(20, height)}%` }}
+            />
+          ))}
+        </div>
+        <p className="text-muted-foreground animate-pulse">Listening...</p>
+      </div>
+    );
+  }
+
+  // Expand mode - fullscreen zoom effect
+  if (isExpandMode) {
+    return (
+      <div 
+        className="min-h-screen bg-gradient-to-br from-cyan-900 via-blue-900 to-black flex items-center justify-center cursor-pointer overflow-hidden"
+        onClick={() => setIsExpandMode(false)}
+      >
+        <div className="relative">
+          {/* Expanding rings */}
+          {[1, 2, 3, 4].map((ring) => (
+            <div
+              key={ring}
+              className="absolute inset-0 border-2 border-cyan-400/30 rounded-full animate-ping"
+              style={{ 
+                animationDelay: `${ring * 0.3}s`,
+                width: `${ring * 80}px`,
+                height: `${ring * 80}px`,
+                left: `${-ring * 40 + 40}px`,
+                top: `${-ring * 40 + 40}px`,
+              }}
+            />
+          ))}
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-2xl relative z-10">
+            <Expand className="w-10 h-10 text-foreground" />
+          </div>
+        </div>
+        <p className="absolute bottom-20 text-cyan-400/60 text-sm">Scalable by design</p>
+      </div>
+    );
+  }
+
   return (
     <div className={`min-h-screen transition-colors duration-500 ${isDayMode ? 'bg-white' : 'bg-background'}`}>
+      {/* Shield Scan Overlay */}
+      {isShieldMode && (
+        <div className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-center">
+          <div className="relative">
+            <Shield className="w-24 h-24 text-red-500 animate-pulse" />
+            <div className="absolute inset-0 border-4 border-red-500/50 rounded-full animate-spin" style={{ animationDuration: '2s' }} />
+          </div>
+          <div className="mt-8 flex flex-col items-center gap-2">
+            <div className="h-2 w-48 bg-muted rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-red-500 to-orange-500 animate-[scan_3s_ease-in-out]" style={{ animation: 'scan 3s ease-in-out' }} />
+            </div>
+            <p className="text-red-400 text-sm animate-pulse">Scanning home security...</p>
+          </div>
+          <style>{`
+            @keyframes scan {
+              0% { width: 0%; }
+              100% { width: 100%; }
+            }
+          `}</style>
+        </div>
+      )}
+
+      {/* Grid Shuffle Overlay */}
+      {isGridMode && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center cursor-pointer p-8"
+          onClick={() => setIsGridMode(false)}
+        >
+          <div className="grid grid-cols-3 gap-4 max-w-md">
+            {offers.map((offer, i) => (
+              <div
+                key={offer.id}
+                className={`w-20 h-20 rounded-xl bg-gradient-to-br ${offer.color} flex items-center justify-center shadow-xl animate-bounce`}
+                style={{ animationDelay: `${i * 0.1}s`, animationDuration: '1s' }}
+              >
+                <offer.icon className="w-8 h-8 text-foreground" />
+              </div>
+            ))}
+          </div>
+          <p className="absolute bottom-16 text-muted-foreground text-sm">All devices, one control</p>
+        </div>
+      )}
+
       <Header />
       <main className="pt-28 md:pt-32">
         {/* Hero Section */}
@@ -205,12 +336,19 @@ const SmartHomeAutomation = () => {
                     </span>
                   )}
                   
-                  <div 
-                    onClick={() => handleIconClick(offer.id)}
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${offer.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg ${(offer.id === "lighting" || offer.id === "appliance") ? 'cursor-pointer hover:scale-125' : ''}`}
-                  >
-                    <offer.icon className="w-6 h-6 text-foreground" />
-                  </div>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div 
+                        onClick={() => handleIconClick(offer.id)}
+                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${offer.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg cursor-pointer hover:scale-125`}
+                      >
+                        <offer.icon className="w-6 h-6 text-foreground" />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Tap me! ✨</p>
+                    </TooltipContent>
+                  </Tooltip>
                   
                   <h3 className={`text-xl font-semibold mb-3 ${isDayMode ? 'text-gray-900' : 'text-foreground'}`}>
                     {offer.title}
