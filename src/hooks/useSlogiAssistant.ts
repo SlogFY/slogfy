@@ -38,13 +38,25 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
       utterance.pitch = 1;
       utterance.volume = 1;
       
-      // Try to get a good English voice
+      // Try to get appropriate voice based on text content
       const voices = window.speechSynthesis.getVoices();
-      const englishVoice = voices.find(v => v.lang.startsWith('en') && v.name.includes('Female')) 
-        || voices.find(v => v.lang.startsWith('en'))
-        || voices[0];
-      if (englishVoice) {
-        utterance.voice = englishVoice;
+      const hasHindi = /[\u0900-\u097F]/.test(text); // Check for Devanagari script
+      
+      let selectedVoice;
+      if (hasHindi) {
+        // Try Hindi voice first
+        selectedVoice = voices.find(v => v.lang.startsWith('hi')) 
+          || voices.find(v => v.lang.includes('IN'))
+          || voices[0];
+      } else {
+        // Use English voice
+        selectedVoice = voices.find(v => v.lang.startsWith('en') && v.name.includes('Female')) 
+          || voices.find(v => v.lang.startsWith('en'))
+          || voices[0];
+      }
+      
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
       }
 
       utterance.onstart = () => setIsSpeaking(true);
@@ -103,7 +115,10 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.lang = 'en-US';
+    // Support both Hindi and English - browser will auto-detect
+    recognition.lang = 'hi-IN'; // Primary: Hindi
+    // Add English as fallback by accepting both
+    (recognition as any).languages = ['hi-IN', 'en-IN', 'en-US'];
 
     recognition.onstart = () => {
       setIsListening(true);
@@ -159,8 +174,8 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
       // Load voices (needed for some browsers)
       window.speechSynthesis.getVoices();
       
-      // Greeting
-      await speak("Hey! I'm Slogi. How can I help you?");
+      // Greeting in both languages
+      await speak("Hey! I'm Slogi. Main aapki kaise madad kar sakta hoon?");
       
       // Start listening after greeting
       startListening();
