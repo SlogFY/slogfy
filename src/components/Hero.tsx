@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-smart-home.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 md:pt-32">
       {/* Background Elements */}
       <div className="absolute inset-0 hero-gradient" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(199_89%_48%/0.1)_0%,_transparent_70%)]" />
