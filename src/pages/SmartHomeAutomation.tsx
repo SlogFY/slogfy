@@ -6,6 +6,7 @@ import {
   Power, 
   LayoutGrid, 
   Mic, 
+  MicOff,
   Expand, 
   Shield, 
   Check, 
@@ -19,6 +20,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useSlogiAssistant } from "@/hooks/useSlogiAssistant";
 
 const offers = [
   {
@@ -124,20 +126,29 @@ const SmartHomeAutomation = () => {
   const [isDayMode, setIsDayMode] = useState(false);
   const [isSpotlightMode, setIsSpotlightMode] = useState(false);
   const [isGridMode, setIsGridMode] = useState(false);
-  const [isVoiceMode, setIsVoiceMode] = useState(false);
   const [isExpandMode, setIsExpandMode] = useState(false);
   const [isShieldMode, setIsShieldMode] = useState(false);
   const [voiceBars, setVoiceBars] = useState<number[]>([]);
+  
+  const { 
+    isActive: isVoiceMode, 
+    isListening, 
+    isSpeaking, 
+    transcript, 
+    response, 
+    startAssistant, 
+    stopAssistant 
+  } = useSlogiAssistant();
 
   // Voice wave animation
   useEffect(() => {
-    if (isVoiceMode) {
+    if (isVoiceMode || isListening || isSpeaking) {
       const interval = setInterval(() => {
         setVoiceBars(Array.from({ length: 12 }, () => Math.random() * 100));
       }, 100);
       return () => clearInterval(interval);
     }
-  }, [isVoiceMode]);
+  }, [isVoiceMode, isListening, isSpeaking]);
 
   // Auto-close shield scan after 3 seconds
   useEffect(() => {
@@ -155,7 +166,11 @@ const SmartHomeAutomation = () => {
     } else if (offerId === "centralized") {
       setIsGridMode(!isGridMode);
     } else if (offerId === "voice") {
-      setIsVoiceMode(!isVoiceMode);
+      if (isVoiceMode) {
+        stopAssistant();
+      } else {
+        startAssistant();
+      }
     } else if (offerId === "scalable") {
       setIsExpandMode(!isExpandMode);
     } else if (offerId === "security") {
@@ -180,23 +195,64 @@ const SmartHomeAutomation = () => {
     );
   }
 
-  // Voice Assistant mode - full screen voice wave
+  // Voice Assistant mode - full screen voice wave with Slogi
   if (isVoiceMode) {
     return (
       <div 
-        className="min-h-screen bg-black flex flex-col items-center justify-center cursor-pointer gap-8"
-        onClick={() => setIsVoiceMode(false)}
+        className="min-h-screen bg-black flex flex-col items-center justify-center gap-8 px-4"
       >
-        <div className="flex items-end gap-1 h-32">
+        {/* Slogi Avatar */}
+        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-2xl">
+          {isListening ? (
+            <Mic className="w-10 h-10 text-white animate-pulse" />
+          ) : (
+            <MicOff className="w-10 h-10 text-white/70" />
+          )}
+        </div>
+
+        {/* Voice Wave */}
+        <div className="flex items-end gap-1 h-24">
           {voiceBars.map((height, i) => (
             <div
               key={i}
-              className="w-3 bg-gradient-to-t from-purple-500 to-pink-500 rounded-full transition-all duration-100"
+              className={`w-3 rounded-full transition-all duration-100 ${
+                isSpeaking 
+                  ? 'bg-gradient-to-t from-pink-500 to-purple-400' 
+                  : isListening 
+                    ? 'bg-gradient-to-t from-purple-500 to-pink-500'
+                    : 'bg-gradient-to-t from-gray-600 to-gray-500'
+              }`}
               style={{ height: `${Math.max(20, height)}%` }}
             />
           ))}
         </div>
-        <p className="text-muted-foreground animate-pulse">Listening...</p>
+
+        {/* Status */}
+        <div className="text-center space-y-2">
+          <p className={`text-lg font-medium ${isSpeaking ? 'text-pink-400' : isListening ? 'text-purple-400' : 'text-muted-foreground'}`}>
+            {isSpeaking ? "Slogi is speaking..." : isListening ? "Listening..." : "Processing..."}
+          </p>
+          
+          {transcript && (
+            <p className="text-sm text-muted-foreground max-w-md">
+              You: "{transcript}"
+            </p>
+          )}
+          
+          {response && !isSpeaking && (
+            <p className="text-sm text-purple-300 max-w-md">
+              Slogi: "{response}"
+            </p>
+          )}
+        </div>
+
+        {/* Exit Button */}
+        <button 
+          onClick={stopAssistant}
+          className="mt-8 px-6 py-2 rounded-full bg-white/10 text-white/70 hover:bg-white/20 transition-colors text-sm"
+        >
+          Tap to exit
+        </button>
       </div>
     );
   }
