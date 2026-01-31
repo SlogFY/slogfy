@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ServicesPage from "./pages/Services";
 import SmartHomeAutomation from "./pages/SmartHomeAutomation";
+import CustomIoTDevelopment from "./pages/CustomIoTDevelopment";
+import SecuritySystems from "./pages/SecuritySystems";
 import FeaturesPage from "./pages/Features";
 import AboutPage from "./pages/About";
 import ContactPage from "./pages/Contact";
@@ -27,6 +29,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/smart-home-automation" element={<SmartHomeAutomation />} />
+          <Route path="/services/custom-iot-development" element={<CustomIoTDevelopment />} />
+          <Route path="/services/security-systems" element={<SecuritySystems />} />
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
