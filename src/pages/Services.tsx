@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Home, Cpu, ShieldAlert, LayoutDashboard, Bot } from "lucide-react";
@@ -8,6 +9,7 @@ const services = [
     title: "Smart Home Automation",
     description: "End-to-end home automation solutions including lighting, appliances, security, and energy control using modern IoT standards.",
     color: "from-primary to-blue-600",
+    link: "/services/smart-home-automation",
   },
   {
     icon: Cpu,
@@ -61,28 +63,44 @@ const ServicesPage = () => {
             
             {/* Services Grid */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="group relative p-6 lg:p-8 rounded-2xl card-gradient border border-border/50 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2"
-                >
-                  {/* Icon */}
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <service.icon className="w-7 h-7 text-foreground" />
+              {services.map((service, index) => {
+                const CardContent = (
+                  <>
+                    {/* Icon */}
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <service.icon className="w-7 h-7 text-foreground" />
+                    </div>
+                    
+                    {/* Content */}
+                    <h3 className="text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {service.description}
+                    </p>
+                    
+                    {/* Hover Glow */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  </>
+                );
+
+                return service.link ? (
+                  <Link
+                    key={index}
+                    to={service.link}
+                    className="group relative p-6 lg:p-8 rounded-2xl card-gradient border border-border/50 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                  >
+                    {CardContent}
+                  </Link>
+                ) : (
+                  <div
+                    key={index}
+                    className="group relative p-6 lg:p-8 rounded-2xl card-gradient border border-border/50 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2"
+                  >
+                    {CardContent}
                   </div>
-                  
-                  {/* Content */}
-                  <h3 className="text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                  
-                  {/* Hover Glow */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
