@@ -21,6 +21,7 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
   
   const recognitionRef = useRef<InstanceType<typeof window.SpeechRecognition> | null>(null);
   const synthRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const isActiveRef = useRef(false);
 
   const speak = useCallback((text: string): Promise<void> => {
     return new Promise((resolve) => {
@@ -121,8 +122,8 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
       // Speak the response
       await speak(aiResponse);
 
-      // Continue listening after response
-      if (isActive) {
+      // Continue listening after response (use ref for current value)
+      if (isActiveRef.current) {
         setTimeout(() => {
           startListening();
         }, 500);
@@ -134,8 +135,8 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
       setIsListening(false);
       
       if (event.error === 'no-speech') {
-        // Restart listening if no speech detected
-        if (isActive) {
+        // Restart listening if no speech detected (use ref)
+        if (isActiveRef.current) {
           setTimeout(() => startListening(), 500);
         }
       }
@@ -147,7 +148,7 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
 
     recognitionRef.current = recognition;
     recognition.start();
-  }, [getAIResponse, speak, isActive]);
+  }, [getAIResponse, speak]);
 
   const startAssistant = useCallback(async () => {
     try {
@@ -155,6 +156,7 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       
       setIsActive(true);
+      isActiveRef.current = true;
       
       // Load voices (needed for some browsers)
       window.speechSynthesis.getVoices();
@@ -172,11 +174,13 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
         variant: "destructive",
       });
       setIsActive(false);
+      isActiveRef.current = false;
     }
   }, [speak, startListening]);
 
   const stopAssistant = useCallback(() => {
     setIsActive(false);
+    isActiveRef.current = false;
     setIsListening(false);
     setIsSpeaking(false);
     
