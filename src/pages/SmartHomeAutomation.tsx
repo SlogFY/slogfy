@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { 
@@ -16,6 +17,7 @@ import {
 
 const offers = [
   {
+    id: "lighting",
     icon: Lightbulb,
     title: "Lighting Automation",
     description: "Automated control of lighting for convenience, energy efficiency, and ambience.",
@@ -28,6 +30,7 @@ const offers = [
     color: "from-yellow-400 to-orange-500",
   },
   {
+    id: "appliance",
     icon: Power,
     title: "Appliance Automation",
     description: "Smart control of everyday home appliances without changing your routine.",
@@ -40,6 +43,7 @@ const offers = [
     color: "from-blue-400 to-cyan-500",
   },
   {
+    id: "centralized",
     icon: LayoutGrid,
     title: "Centralized Control",
     description: "Simple and reliable control designed for all age groups.",
@@ -52,6 +56,7 @@ const offers = [
     color: "from-green-400 to-emerald-500",
   },
   {
+    id: "voice",
     icon: Mic,
     title: "Voice Assistant Support",
     description: "Hands-free control for a more natural smart home experience.",
@@ -65,6 +70,7 @@ const offers = [
     badge: "Future Update",
   },
   {
+    id: "scalable",
     icon: Expand,
     title: "Scalable & Future-Ready Design",
     description: "Built to grow with your home.",
@@ -77,6 +83,7 @@ const offers = [
     color: "from-cyan-400 to-blue-500",
   },
   {
+    id: "security",
     icon: Shield,
     title: "Safety & Home Security",
     description: "Built-in safety features with a roadmap for advanced security upgrades.",
@@ -109,23 +116,51 @@ const idealFor = [
 ];
 
 const SmartHomeAutomation = () => {
+  const [isDayMode, setIsDayMode] = useState(false);
+  const [isSpotlightMode, setIsSpotlightMode] = useState(false);
+
+  const handleIconClick = (offerId: string) => {
+    if (offerId === "lighting") {
+      setIsDayMode(!isDayMode);
+    } else if (offerId === "appliance") {
+      setIsSpotlightMode(!isSpotlightMode);
+    }
+  };
+
+  // Spotlight mode - only show the Appliance icon
+  if (isSpotlightMode) {
+    const applianceOffer = offers.find(o => o.id === "appliance")!;
+    return (
+      <div 
+        className="min-h-screen bg-black flex items-center justify-center cursor-pointer"
+        onClick={() => setIsSpotlightMode(false)}
+      >
+        <div 
+          className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${applianceOffer.color} flex items-center justify-center shadow-2xl animate-pulse`}
+        >
+          <Power className="w-12 h-12 text-foreground" />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`min-h-screen transition-colors duration-500 ${isDayMode ? 'bg-white' : 'bg-background'}`}>
       <Header />
       <main className="pt-28 md:pt-32">
         {/* Hero Section */}
         <section className="py-16 lg:py-24 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(199_89%_48%/0.08)_0%,_transparent_50%)]" />
+          <div className={`absolute inset-0 ${isDayMode ? 'bg-[radial-gradient(ellipse_at_top,_hsl(199_89%_48%/0.1)_0%,_transparent_50%)]' : 'bg-[radial-gradient(ellipse_at_top,_hsl(199_89%_48%/0.08)_0%,_transparent_50%)]'}`} />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 animate-fade-up">
+              <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 animate-fade-up ${isDayMode ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary'}`}>
                 Our Services
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 animate-fade-up-delay-1">
+              <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 animate-fade-up-delay-1 ${isDayMode ? 'text-gray-900' : ''}`}>
                 Smart Home{" "}
                 <span className="text-gradient">Automation</span>
               </h1>
-              <p className="text-xl text-muted-foreground animate-fade-up-delay-2">
+              <p className={`text-xl animate-fade-up-delay-2 ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>
                 Designed for Indian Homes
               </p>
             </div>
@@ -136,11 +171,11 @@ const SmartHomeAutomation = () => {
         <section className="py-16 lg:py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="card-gradient rounded-2xl p-8 lg:p-12 border border-border/50">
+              <div className={`rounded-2xl p-8 lg:p-12 border transition-colors duration-500 ${isDayMode ? 'bg-gray-50 border-gray-200' : 'card-gradient border-border/50'}`}>
                 <h2 className="text-2xl font-semibold mb-6 text-center">
                   <span className="text-gradient">Overview</span>
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed text-center">
+                <p className={`text-lg leading-relaxed text-center ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>
                   SlogFY provides complete smart home automation solutions that make everyday living more comfortable, secure, and efficient. Our systems are thoughtfully designed for Indian homes, keeping local usage patterns, electrical infrastructure, and budget expectations in mind. From a single room to an entire home, we deliver reliable automation that works smoothly and scales easily.
                 </p>
               </div>
@@ -152,7 +187,7 @@ const SmartHomeAutomation = () => {
         <section className="py-16 lg:py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h2 className={`text-3xl sm:text-4xl font-bold mb-4 ${isDayMode ? 'text-gray-900' : ''}`}>
                 What We{" "}
                 <span className="text-gradient">Offer</span>
               </h2>
@@ -162,7 +197,7 @@ const SmartHomeAutomation = () => {
               {offers.map((offer, index) => (
                 <div
                   key={index}
-                  className="group relative p-6 lg:p-8 rounded-2xl card-gradient border border-border/50 hover:border-primary/30 transition-all duration-500"
+                  className={`group relative p-6 lg:p-8 rounded-2xl border transition-all duration-500 ${isDayMode ? 'bg-white border-gray-200 hover:border-primary/50 shadow-sm hover:shadow-md' : 'card-gradient border-border/50 hover:border-primary/30'}`}
                 >
                   {offer.badge && (
                     <span className="absolute top-4 right-4 px-3 py-1 text-xs font-medium rounded-full bg-secondary/20 text-secondary">
@@ -170,20 +205,23 @@ const SmartHomeAutomation = () => {
                     </span>
                   )}
                   
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${offer.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <div 
+                    onClick={() => handleIconClick(offer.id)}
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${offer.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg ${(offer.id === "lighting" || offer.id === "appliance") ? 'cursor-pointer hover:scale-125' : ''}`}
+                  >
                     <offer.icon className="w-6 h-6 text-foreground" />
                   </div>
                   
-                  <h3 className="text-xl font-semibold mb-3 text-foreground">
+                  <h3 className={`text-xl font-semibold mb-3 ${isDayMode ? 'text-gray-900' : 'text-foreground'}`}>
                     {offer.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
+                  <p className={`text-sm mb-4 ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>
                     {offer.description}
                   </p>
                   
                   <ul className="space-y-2">
                     {offer.bullets.map((bullet, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <li key={idx} className={`flex items-start gap-2 text-sm ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>
                         <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                         <span>{bullet}</span>
                       </li>
@@ -200,20 +238,20 @@ const SmartHomeAutomation = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-10">
-                <h2 className="text-3xl sm:text-4xl font-bold">
+                <h2 className={`text-3xl sm:text-4xl font-bold ${isDayMode ? 'text-gray-900' : ''}`}>
                   Why{" "}
                   <span className="text-gradient">SlogFY</span>
                 </h2>
               </div>
               
-              <div className="card-gradient rounded-2xl p-8 lg:p-10 border border-border/50">
+              <div className={`rounded-2xl p-8 lg:p-10 border transition-colors duration-500 ${isDayMode ? 'bg-gray-50 border-gray-200' : 'card-gradient border-border/50'}`}>
                 <ul className="grid sm:grid-cols-2 gap-4">
                   {whySlogfy.map((item, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                         <Check className="w-4 h-4 text-primary" />
                       </div>
-                      <span className="text-foreground">{item}</span>
+                      <span className={isDayMode ? 'text-gray-900' : 'text-foreground'}>{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -226,7 +264,7 @@ const SmartHomeAutomation = () => {
         <section className="py-16 lg:py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <h2 className="text-3xl sm:text-4xl font-bold">
+              <h2 className={`text-3xl sm:text-4xl font-bold ${isDayMode ? 'text-gray-900' : ''}`}>
                 Ideal{" "}
                 <span className="text-gradient">For</span>
               </h2>
@@ -236,12 +274,12 @@ const SmartHomeAutomation = () => {
               {idealFor.map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center text-center p-6 rounded-2xl card-gradient border border-border/50 hover:border-primary/30 transition-all duration-300"
+                  className={`flex flex-col items-center text-center p-6 rounded-2xl border transition-all duration-300 ${isDayMode ? 'bg-white border-gray-200 hover:border-primary/50 shadow-sm' : 'card-gradient border-border/50 hover:border-primary/30'}`}
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                     <item.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <span className="text-sm text-muted-foreground">{item.text}</span>
+                  <span className={`text-sm ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>{item.text}</span>
                 </div>
               ))}
             </div>
@@ -253,15 +291,15 @@ const SmartHomeAutomation = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-8">
-                <h2 className="text-3xl sm:text-4xl font-bold">
+                <h2 className={`text-3xl sm:text-4xl font-bold ${isDayMode ? 'text-gray-900' : ''}`}>
                   Our{" "}
                   <span className="text-gradient">Approach</span>
                 </h2>
               </div>
               
-              <div className="card-gradient rounded-2xl p-8 lg:p-12 border border-border/50 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
-                <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10">
+              <div className={`rounded-2xl p-8 lg:p-12 border relative overflow-hidden transition-colors duration-500 ${isDayMode ? 'bg-gray-50 border-gray-200' : 'card-gradient border-border/50'}`}>
+                <div className={`absolute inset-0 ${isDayMode ? 'bg-gradient-to-br from-primary/10 to-secondary/10' : 'bg-gradient-to-br from-primary/5 to-secondary/5'}`} />
+                <p className={`text-lg leading-relaxed text-center relative z-10 ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>
                   We understand every home is different. That's why SlogFY focuses on practical automation that works today while being ready for tomorrow. Each system is customized to match your home layout, lifestyle, and budget—without locking you into unnecessary features.
                 </p>
               </div>
