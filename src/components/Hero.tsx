@@ -28,7 +28,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-up-delay-2">
-              SlogFY builds secure, intelligent, and scalable home automation solutions with built-in safety and seamless control.
+              SlogFY builds premium, next-generation smart home automation using the latest technology, thoughtfully designed for Indian homes, lifestyles, and budget-friendly living.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-up-delay-3">
