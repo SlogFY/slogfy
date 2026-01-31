@@ -174,8 +174,8 @@ export function useSlogiAssistant(): UseSlogiAssistantReturn {
       // Load voices (needed for some browsers)
       window.speechSynthesis.getVoices();
       
-      // Greeting in both languages
-      await speak("Hey! I'm Slogi. Main aapki kaise madad kar sakta hoon?");
+      // English greeting first time
+      await speak("Hey! I'm Slogi. How can I help you?");
       
       // Start listening after greeting
       startListening();
