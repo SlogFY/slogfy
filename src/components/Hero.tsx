@@ -42,19 +42,7 @@ const Hero = () => {
               </Button>
             </div>
             
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-border/50">
-              {[
-                { value: "100+", label: "Projects Completed" },
-                { value: "99%", label: "Client Satisfaction" },
-                { value: "24/7", label: "Support Available" },
-              ].map((stat, index) => (
-                <div key={index} className="text-center lg:text-left">
-                  <div className="text-2xl sm:text-3xl font-bold text-foreground">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+            {/* Stats removed as requested */}
           </div>
           
           {/* Image */}
