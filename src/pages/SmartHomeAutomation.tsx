@@ -21,7 +21,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useSlogiAssistant } from "@/hooks/useSlogiAssistant";
-import AutomationOverviewPanel from "@/components/smart-home/AutomationOverviewPanel";
 
 const offers = [
   {
@@ -340,32 +339,20 @@ const SmartHomeAutomation = () => {
         <section className="py-16 lg:py-24 relative overflow-hidden">
           <div className={`absolute inset-0 ${isDayMode ? 'bg-[radial-gradient(ellipse_at_top,_hsl(199_89%_48%/0.1)_0%,_transparent_50%)]' : 'bg-[radial-gradient(ellipse_at_top,_hsl(199_89%_48%/0.08)_0%,_transparent_50%)]'}`} />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
-              <div className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
-                <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 animate-fade-up ${isDayMode ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary'}`}>
-                  Our Services
-                </span>
-                <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 animate-fade-up-delay-1 ${isDayMode ? 'text-gray-900' : ''}`}>
-                  Smart Home{" "}
-                  <span className="text-gradient">Automation</span>
-                </h1>
-                <p className={`text-xl animate-fade-up-delay-2 ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>
-                  Designed for Indian Homes
-                </p>
-              </div>
-
-              {/* Desktop: use the right-side hero area */}
-              <div className="relative hidden lg:block">
-                <AutomationOverviewPanel />
-              </div>
+            <div className="text-center max-w-4xl mx-auto">
+              <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 animate-fade-up ${isDayMode ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary'}`}>
+                Our Services
+              </span>
+              <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 animate-fade-up-delay-1 ${isDayMode ? 'text-gray-900' : ''}`}>
+                Smart Home{" "}
+                <span className="text-gradient">Automation</span>
+              </h1>
+              <p className={`text-xl animate-fade-up-delay-2 ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>
+                Designed for Indian Homes
+              </p>
             </div>
           </div>
         </section>
-
-        {/* Mobile: bottom-sheet */}
-        <div className="lg:hidden">
-          <AutomationOverviewPanel />
-        </div>
 
         {/* Overview Section */}
         <section className="py-16 lg:py-20">
