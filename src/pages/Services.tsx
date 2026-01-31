@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Home, Cpu, ShieldAlert, LayoutDashboard, Bot } from "lucide-react";
+import { Home, Cpu, ShieldAlert } from "lucide-react";
 
 const services = [
   {
@@ -16,24 +16,14 @@ const services = [
     title: "Custom IoT Device Development",
     description: "Design and development of custom IoT hardware and firmware based on ESP32, Matter, BLE, Wi-Fi, and cloud integration.",
     color: "from-purple-500 to-pink-600",
+    link: "/services/custom-iot-development",
   },
   {
     icon: ShieldAlert,
     title: "Security & SOS Systems",
     description: "Smart security devices with instant SOS alerts, real-time notifications, and remote monitoring.",
     color: "from-secondary to-red-500",
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Dashboard & Mobile App Development",
-    description: "User and admin dashboards with real-time device control, analytics, and secure cloud connectivity.",
-    color: "from-green-500 to-emerald-600",
-  },
-  {
-    icon: Bot,
-    title: "Robotics & AI Solutions",
-    description: "Custom robotics and AI-based automation projects tailored to specific client requirements.",
-    color: "from-cyan-500 to-primary",
+    link: "/services/security-systems",
   },
 ];
 
