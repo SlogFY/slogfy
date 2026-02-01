@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { motion, useReducedMotion } from "framer-motion";
-import IoTWaveBackground from "@/components/scroll/IoTWaveBackground";
-import ScrollStoryHighlights from "@/components/scroll/ScrollStoryHighlights";
-import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { 
   Lightbulb, 
   Power, 
@@ -17,8 +13,7 @@ import {
   Home, 
   Building2, 
   Users, 
-  TrendingUp,
-  Zap,
+  TrendingUp 
 } from "lucide-react";
 import {
   Tooltip,
@@ -128,9 +123,6 @@ const idealFor = [
 ];
 
 const SmartHomeAutomation = () => {
-  const reduceMotion = useReducedMotion();
-  useSmoothScroll(true);
-
   const [isDayMode, setIsDayMode] = useState(false);
   const [isSpotlightMode, setIsSpotlightMode] = useState(false);
   const [isGridMode, setIsGridMode] = useState(false);
@@ -346,29 +338,6 @@ const SmartHomeAutomation = () => {
         {/* Hero Section */}
         <section className="py-16 lg:py-24 relative overflow-hidden">
           <div className={`absolute inset-0 ${isDayMode ? 'bg-[radial-gradient(ellipse_at_top,_hsl(199_89%_48%/0.1)_0%,_transparent_50%)]' : 'bg-[radial-gradient(ellipse_at_top,_hsl(199_89%_48%/0.08)_0%,_transparent_50%)]'}`} />
-          {/* Living background (subtle glow drift) */}
-          <motion.div
-            aria-hidden="true"
-            className="absolute inset-0"
-            animate={
-              reduceMotion
-                ? undefined
-                : {
-                    backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-                  }
-            }
-            transition={
-              reduceMotion
-                ? undefined
-                : { duration: 22, ease: "easeInOut", repeat: Infinity }
-            }
-            style={{
-              backgroundImage:
-                "radial-gradient(900px 380px at 20% 15%, hsl(var(--primary) / 0.12) 0%, transparent 60%), radial-gradient(700px 300px at 80% 35%, hsl(var(--primary) / 0.08) 0%, transparent 55%)",
-              backgroundSize: "140% 140%",
-              filter: "blur(2px)",
-            }}
-          />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
               <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 animate-fade-up ${isDayMode ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary'}`}>
@@ -385,48 +354,18 @@ const SmartHomeAutomation = () => {
           </div>
         </section>
 
-        {/* Scroll Story Section (fills the perceived empty space) */}
-        <section className="relative py-10 lg:py-16">
-          <IoTWaveBackground />
-          <div className="relative z-10">
-            <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-              <p className={`text-center text-sm ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>
-                A connected home that feels effortless.
-              </p>
-            </div>
-
-            <div className="mt-8">
-              <ScrollStoryHighlights
-                title="Highlights"
-                highlights={[
-                  { icon: Lightbulb, label: "Lighting Automation" },
-                  { icon: Power, label: "Appliance Control" },
-                  { icon: Mic, label: "Mobile & Voice Control" },
-                  { icon: Zap, label: "Energy Efficient" },
-                ]}
-              />
-            </div>
-          </div>
-        </section>
-
         {/* Overview Section */}
         <section className="py-16 lg:py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <motion.div
-                initial={reduceMotion ? undefined : { opacity: 0, y: 40 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                className={`rounded-2xl p-8 lg:p-12 border transition-colors duration-500 ${isDayMode ? 'bg-gray-50 border-gray-200' : 'card-gradient border-border/50'}`}
-              >
+              <div className={`rounded-2xl p-8 lg:p-12 border transition-colors duration-500 ${isDayMode ? 'bg-gray-50 border-gray-200' : 'card-gradient border-border/50'}`}>
                 <h2 className="text-2xl font-semibold mb-6 text-center">
                   <span className="text-gradient">Overview</span>
                 </h2>
                 <p className={`text-lg leading-relaxed text-center ${isDayMode ? 'text-gray-600' : 'text-muted-foreground'}`}>
                   SlogFY provides complete smart home automation solutions that make everyday living more comfortable, secure, and efficient. Our systems are thoughtfully designed for Indian homes, keeping local usage patterns, electrical infrastructure, and budget expectations in mind. From a single room to an entire home, we deliver reliable automation that works smoothly and scales easily.
                 </p>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
