@@ -11,10 +11,9 @@ const footerLinks = {
     { name: "Careers", href: "/careers" },
   ],
   services: [
-    { name: "Smart Home Automation", href: "/services" },
-    { name: "IoT Development", href: "/services" },
-    { name: "Security Systems", href: "/services" },
-    { name: "Robotics & AI", href: "/services" },
+    { name: "Smart Home Automation", href: "/services/smart-home-automation" },
+    { name: "IoT Development", href: "/services/custom-iot-development" },
+    { name: "Security Systems", href: "/services/security-systems" },
   ],
   support: [
     { name: "Help Center", href: "/contact" },
