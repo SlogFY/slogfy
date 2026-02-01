@@ -45,7 +45,7 @@ const Header = () => {
           <div className="hidden md:block">
             <Link to="/get-started">
               <Button variant="hero" size="default">
-                Get Started
+                Pre-Book Now
               </Button>
             </Link>
           </div>
@@ -75,7 +75,7 @@ const Header = () => {
               ))}
               <Link to="/get-started" onClick={() => setIsMenuOpen(false)}>
                 <Button variant="hero" size="default" className="mt-2 w-full">
-                  Get Started
+                  Pre-Book Now
                 </Button>
               </Link>
             </nav>
