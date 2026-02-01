@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-smart-home.jpg";
 
 const Hero = () => {
@@ -36,10 +37,12 @@ const Hero = () => {
                 Pre-Book Now
                 <ArrowRight className="w-5 h-5" />
               </Button>
-              <Button variant="heroOutline" size="xl">
-                <MessageCircle className="w-5 h-5" />
-                Talk to Us
-              </Button>
+              <Link to="/contact">
+                <Button variant="heroOutline" size="xl">
+                  <MessageCircle className="w-5 h-5" />
+                  Talk to Us
+                </Button>
+              </Link>
             </div>
             
             {/* Stats removed as requested */}
