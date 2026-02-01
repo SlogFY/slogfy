@@ -73,6 +73,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     to={link.href}
+                    onClick={() => window.scrollTo(0, 0)}
                     className="text-muted-foreground hover:text-foreground transition-colors duration-300"
                   >
                     {link.name}
@@ -89,6 +90,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     to={link.href}
+                    onClick={() => window.scrollTo(0, 0)}
                     className="text-muted-foreground hover:text-foreground transition-colors duration-300"
                   >
                     {link.name}
@@ -105,6 +107,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     to={link.href}
+                    onClick={() => window.scrollTo(0, 0)}
                     className="text-muted-foreground hover:text-foreground transition-colors duration-300"
                   >
                     {link.name}
