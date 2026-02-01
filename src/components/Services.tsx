@@ -40,19 +40,6 @@ const Services = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(199_89%_48%/0.05)_0%,_transparent_50%)]" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Our Services
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            What We{" "}
-            <span className="text-gradient">Offer</span>
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            From smart home automation to custom IoT development, we provide comprehensive solutions tailored to your unique needs.
-          </p>
-        </div>
         
         {/* Services Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
